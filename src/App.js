@@ -1,25 +1,26 @@
-import logo from './logo.svg';
-import './App.css';
+import React from 'react'
+import {Route , Routes} from 'react-router-dom';
+import {Box} from '@mui/material';
+import Home from './pages/Home';
+import Navbar from './components/Navbar';
+import ExerciseDetails from './pages/ExerciseDetails';
+import './App.css'
+import Footer from './components/Footer';
 
-function App() {
+const App = () => {
+  const apikey = process.env.API_KEY;
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
-  );
+    
+    <Box width="400px" sx={{width :{xl: '1488px'}}} m="auto">
+        <Navbar />
+        <Routes>
+            <Route path="/" element={<Home apikey={apikey}/>} />
+            {/* console.log(apikey); */}
+            <Route path="/exercise/:id" element={<ExerciseDetails />} />
+        </Routes>
+        <Footer />     
+    </Box>
+  )
 }
 
-export default App;
+export default App
